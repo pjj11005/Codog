@@ -15,15 +15,16 @@ Codog - Dog Friend Matching Website
 ## Project Sitemap
 ![project sitemap](/image/sitemap.png)
 
-## 프로젝트 구현 기능
+## Project Implementation Features
 
-### 1. 이미지 딥러닝 모델 구현
+### 1. Implementation of Image Deep Learning Model
 
-1. 데이터
-    - 총 4800장
-    - 라벨: 16개
-    
+1. Data
+    - Total of 4800 images (300 per breed)
+    - Labels: 16 categories
+
     ![project sitemap](/image/label.png)
 
-2. 
-### 2. 웹사이트 로그인 구현
+    - Other Breeds: Pug, Afghan Hound, Samoyed, Shepherd, Siberian Husky → Composed of 5 breeds, each with 60 images.
+
+### 2. Implementation of Website Login
