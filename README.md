@@ -19,31 +19,25 @@ Codog - Dog Friend Matching Website
 
 ### 1. Implementation of Image Deep Learning Model
 
-1. Data
-    - Total of 4800 images (300 per breed)
-    - Labels: 16 categories
+**1. Data**
+- Total of 4800 images (300 per breed)
+- Labels: 16 categories
+- etc: Pug, Afghan Hound, Samoyed, Shepherd, Siberian Husky → Composed of 5 breeds, each with 60 images.
 
     ![project sitemap](/image/label.png)
 
-    - etc: Pug, Afghan Hound, Samoyed, Shepherd, Siberian Husky → Composed of 5 breeds, each with 60 images.
+**2. Data Collection:**
 
-2. 데이터 수집
+- Data Sources: Data collection involves using web scraping data (40%), Tsinghua Dogs dataset (40%), and Kaggle dataset (20%).
+- Tsinghua Dogs Dataset: [https://cg.cs.tsinghua.edu.cn/ThuDogs/](https://cg.cs.tsinghua.edu.cn/ThuDogs/)
+- Kaggle Dataset: [https://www.kaggle.com/competitions/dog-breed-identification/data](https://www.kaggle.com/competitions/dog-breed-identification/data)
 
-    - 크롤링 데이터 (40%) + Tsinghua Dogs 데이터셋 (40%) + kaggle 데이터 (20%) 이용하여  데이터 수집
+**3. Model Performance Enhancement:**
 
-    - Tsinghua Dogs 데이터셋: [https://cg.cs.tsinghua.edu.cn/ThuDogs/](https://cg.cs.tsinghua.edu.cn/ThuDogs/)
+   >Baseline model training results showed very low val_loss and val_accuracy, prompting the decision to improve model performance.
 
-    - kaggle 데이터: [https://www.kaggle.com/competitions/dog-breed-identification/data](https://www.kaggle.com/competitions/dog-breed-identification/data)
-
-
-3. 모델 성능 향상
-    >기본 베이스 라인 모델 학습 결과 -> val_loss, val_accuracy가 매우 낮게 나와 모델의 성능을 높이기로 결정
-
-    - 데이터 증강: 회전각도, 확대축소, 좌우이동, 상하이동, 좌우반전 등 5~7가지 데이터 증강 기법을 사용해서 Train과 Val 데이터에 적용
-
-    - 전이학습: 13개의 전이학습 모델들을 가져와 학습에 사용
-
-    - 가장 좋은 성능과 시간도 적게 드는 Xception 모델로 선정
+- Data Augmentation: Apply 5-7 data augmentation techniques such as rotation, zooming, horizontal and vertical shifts, and horizontal flipping to both the training and validation datasets.
+- Transfer Learning: Utilize 13 different transfer learning models for training, ultimately selecting the Xception model for its superior performance and efficiency.
 
 4. 모델 성능 확인
     - 
