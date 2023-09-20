@@ -100,21 +100,21 @@
 
     <h2>만나고 싶은 품종을 4개 골라주세요!</h2>
     <select id="breed" name="breed[]" size="6" multiple="multiple" required>
-        <option value="beagle">비글</option>
-        <option value="bichon">비숑</option>
-        <option value="border colie">보더콜리</option>
-        <option value="bulldog">불독</option>
-        <option value="chihuahua">치와와</option>
-        <option value="dachshund">닥스훈트</option>
-        <option value="jindo dog">진돗개</option>
-        <option value="maltese">말티즈</option>
-        <option value="pomeranian">포메라니안</option>
-        <option value="poodle">푸들</option>
-        <option value="retriever">리트리버</option>
-        <option value="shiba dog">시바견</option>
-        <option value="shih tzu">시츄</option>
-        <option value="welsh corgi">웰시코기</option>
-        <option value="yorkshire terrior">요크셔테리어</option>
+        <option value="Beagle">비글</option>
+        <option value="Bichon">비숑</option>
+        <option value="Border colie">보더콜리</option>
+        <option value="Bulldog">불독</option>
+        <option value="Chihuahua">치와와</option>
+        <option value="Dachshund">닥스훈트</option>
+        <option value="Jindo dog">진돗개</option>
+        <option value="Maltese">말티즈</option>
+        <option value="Pomeranian">포메라니안</option>
+        <option value="Poodle">푸들</option>
+        <option value="Retriever">리트리버</option>
+        <option value="Shiba dog">시바견</option>
+        <option value="Shih tzu">시츄</option>
+        <option value="Welsh corgi">웰시코기</option>
+        <option value="Yorkshire terrior">요크셔테리어</option>
         <option value="etc">기타</option>
     </select>
     <br /><br />

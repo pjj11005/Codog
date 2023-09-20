@@ -213,6 +213,13 @@
         <button id="check-password-btn">중복 확인</button> <!-- 중복 확인 버튼 추가 -->
     </p>
 
+    <h2>카카오톡 아이디를 입력해 주세요!</h2>
+    <p>카카오톡 아이디 :
+        <input id="kakaoId" type="text" name="kakaoId" size="15" maxlength="30" style="ime-mode:active;" required />
+        <span class="alert"></span>
+        <button id="check-kakaoId-btn">중복 확인</button> <!-- 중복 확인 버튼 추가 -->
+    </p>
+
     <h2>강아지의 사이즈를 골라 주세요!</h2>
     <label>
     <input type="radio" name="size" value="small" required />
@@ -498,6 +505,18 @@
             });
     }
 
+    // 중복된 카카오톡 아이디가 있는지 확인하는 함수
+    function checkDuplicatekakaoId(kakaoId) {
+        var ref = firebase.database().ref("posts");
+        return ref
+            .orderByChild("kakaoId")
+            .equalTo(kakaoId)
+            .once("value")
+            .then(function (snapshot) {
+                return snapshot.exists();
+            });
+    }
+
     $(document).ready(function() {
         $('#upload_file').on('change', function (event) {
             console.log(event.target.files)
@@ -529,6 +548,25 @@
             });
         });
 
+        $('#check-kakaoId-btn').on('click', function () {
+            const kakaoId = $('#kakaoId').val();
+            
+            // 입력된 비밀번호가 빈칸이면 알림 표시
+            if (!kakaoId) {
+                alert("카카오톡 아이디를 입력하세요.");
+                return;
+            }
+
+            // 중복된 비밀번호가 있는지 확인
+            checkDuplicatekakaoId(kakaoId).then(function (isDuplicate) {
+                if (isDuplicate) {
+                    alert("이미 사용 중인 카카오톡아이디입니다.");
+                } else {
+                    alert("사용 가능한 카카오톡아이디입니다.");
+                }
+            });
+        });
+
         $('#btn-submit').on('click', function (event) {
             event.preventDefault(); // 폼 제출 동작 중지
 
@@ -540,6 +578,7 @@
             const neutered = $('input[name=neutered]:checked').val();
             const sex = $('input[name=sex]:checked').val();
             const breed = correctBut.style.display==='none' ?  $('#result').text().split(':')[0] : $('select[name=breed]').val();
+            const kakaoId = $('#kakaoId').val();
             console.log('breed',breed);
            
             if(fileName === '') {
@@ -560,7 +599,8 @@
                     lively: lively,
                     neutered: neutered,
                     sex: sex,
-                    breed: breed
+                    breed: breed,
+                    kakaoId: kakaoId
                 },
                 async: false,
                 success: function (response) {

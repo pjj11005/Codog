@@ -10,6 +10,7 @@ $lively = $_REQUEST["lively"];
 $neutered = $_REQUEST["neutered"];
 $sex = $_REQUEST["sex"];
 $breed = $_REQUEST["breed"];
+$kakaoId = $_REQUEST["kakaoId"];
 $return_data = array();
 
 $newData = [
@@ -21,7 +22,8 @@ $newData = [
     'lively' => $lively,
     'sex' => $sex,
     'neutered' => $neutered,
-    'breed' => $breed
+    'breed' => $breed,
+    'kakaoId' => $kakaoId
 ];
 
 $reference = $database->getReference('posts');
