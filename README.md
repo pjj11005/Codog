@@ -28,7 +28,7 @@ Codog - Dog Friend Matching Website
 
 **2. Data Collection:**
 
-- Data Sources: Data collection involves using web scraping data (40%), Tsinghua Dogs dataset (40%), and Kaggle dataset (20%).
+- Data Sources: Data collection involves using web crawling data (40%), Tsinghua Dogs dataset (40%), and Kaggle dataset (20%).
 - Tsinghua Dogs Dataset: [https://cg.cs.tsinghua.edu.cn/ThuDogs/](https://cg.cs.tsinghua.edu.cn/ThuDogs/)
 - Kaggle Dataset: [https://www.kaggle.com/competitions/dog-breed-identification/data](https://www.kaggle.com/competitions/dog-breed-identification/data)
 
