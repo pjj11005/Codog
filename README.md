@@ -1,5 +1,6 @@
-# 2023년 캡스톤 설계 프로젝트
-Codog - Dog Friend Matching Website 
+# 2023년 1학기 캡스톤 설계 프로젝트
+Codog - Dog Friend Matching Website \
+[https://codog.co.kr/]
 
 ## Project Overview
 
@@ -46,21 +47,38 @@ Codog - Dog Friend Matching Website
 
 - Overall Model Accuracy: 94.17%
 
-    ![Transfer Learning Result](/image/accuracy&loss.png)
+    ![accuracy&loss](/image/accuracy&loss.png)
 
-    ![Transfer Learning Result](/image/modelaccuracy.png)
+    ![modelaccuracy](/image/modelaccuracy.png)
 
 - Precision and Recall: The model exhibited high precision and recall for most classes, resulting in an overall high accuracy. However, the Recall values for the Beagle and Maltese classes were relatively lower.
 
-    ![Transfer Learning Result](/image/precision&recall.png)
+    ![precision&recall](/image/precision&recall.png)
 
 - Confusion Matrix: The confusion matrix, represented as a heatmap, shows that the model's predictions align well with the actual classes, as indicated by the predominantly dark colors.
 
-    ![Transfer Learning Result](/image/confusionmatrix.png)
+    ![confusionmatrix](/image/confusionmatrix.png)
 
 - Model Predictions: The model performs exceptionally well in predicting a wide range of 4,800 images.
 
-    ![Transfer Learning Result](/image/modelprediction.png)
+    ![modelprediction](/image/modelprediction.png)
     
 ### 2. Implementation of Website Login
 
+- 품종 분류: TensorFlow.js로 변환시킨 학습된 모델 사용, 품종 예측 유무에 따라 품종 선택 가능
+- 패스워드: 가입 시 강아지 이름은 중복 가능성이 있으므로 패스워드 중복 불가능 처리
+- 로그인 구현: 비 로그인 시 매칭 불가능, 가입 시 입력한 강아지 이름 및 패스워드를 통해 로그인
+
+    ![breedclassification](/image/breedclassification.png)
+
+## 배운점 및 아쉬운점
+
+- 모델 학습 시 random state를 조절하여 val loss와 accuracy를 효과적으로 수렴시킬 수 있음을 배웠음
+- 데이터 수집 부족으로 모델의 성능 향상이 제한되어 아쉬웠음
+- 개와 고양이 두 가지 범주를 대상으로 한다면 서비스의 범용성이 더 넓어졌을 것으로 예상됨
+- 다양한 모델들을 전이 학습에 활용하면서 각 모델의 특성을 학습하고 활용할 수 있었음
+
+## 팀원
+
+- 지승찬 - 팀장, 서버 관리, 일정 관리 (광운대학교 정보융합학부 데이터사이언스전공)
+- 정호빈 - 매칭 알고리즘 구현, 발표 (광운대학교 정보융합학부 데이터사이언스전공)
