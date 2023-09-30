@@ -1,77 +1,77 @@
 # 2023년 1학기 캡스톤 설계 프로젝트
-Codog - Dog Friend Matching Website \
+코독 - 강아지 친구 매칭 웹사이트 \
 [https://codog.co.kr/]
 
-## Project Overview
+## 프로젝트 개요
 
-> A project that helps users find dogs that match their preferences through a world cup-style competition based on user-defined criteria.
+> 사용자가 정의한 기준에 따라 이상형 월드컴 형식의 대결을 통해 선호하는 강아지를 찾을 수 있도록 돕는 프로젝트입니다.
 
-### Reasons for Development
-1. Service Gap: There is a lack of matchmaking services specifically for dogs.
+### 개발 동기
+1. 서비스 부족: 강아지에 특화된 매칭 서비스 부족
 
-2. Increasing Pet Owners: The demand for pets and the subsequent demand for related services are on the rise.
+2. 애완동물 주인 증가: 반려동물 수요와 관련 서비스 수요 증가
 
-3. Safety: Does not require personal information from pet owners.
+3. 개인정보 안전: 반려동물 주인으로부터 개인 정보를 요구하지 않음
 
-## Project Sitemap
-![project sitemap](/image/sitemap.png)
+## 프로젝트 사이트맵
+![프로젝트 사이트맵](/image/sitemap.png)
 
-## Project Implementation Features
+## 프로젝트 구현 기능
 
-### 1. Implementation of Image Deep Learning Model
+### 1. 이미지 딥 러닝 모델 구현
 
-**1. Data**
-- Total of 4800 images (300 per breed)
-- Labels: 16 categories
-- etc: Pug, Afghan Hound, Samoyed, Shepherd, Siberian Husky → Composed of 5 breeds, each with 60 images.
+**1. 데이터**
+- 총 4800개의 이미지 (각 품종당 300개)
+- 16개 카테고리
+- 기타 품종: 퍼그, 아프간 하운드, 사모예드, 목축견, 시베리안 허스키 → 각각 60개의 이미지로 구성
 
-    ![project sitemap](/image/label.png)
+    ![라벨](/image/label.png)
 
-**2. Data Collection:**
+**2. 데이터 수집:**
 
-- Data Sources: Data collection involves using web crawling data (40%), Tsinghua Dogs dataset (40%), and Kaggle dataset (20%).
-- Tsinghua Dogs Dataset: [https://cg.cs.tsinghua.edu.cn/ThuDogs/](https://cg.cs.tsinghua.edu.cn/ThuDogs/)
-- Kaggle Dataset: [https://www.kaggle.com/competitions/dog-breed-identification/data](https://www.kaggle.com/competitions/dog-breed-identification/data)
+- 데이터 구성: 웹 크롤링 데이터 (60%), Tsinghua Dogs 데이터셋 (20%), Kaggle 데이터셋 (20%)을 사용한 데이터 수집
+- Tsinghua Dogs 데이터셋: [https://cg.cs.tsinghua.edu.cn/ThuDogs/](https://cg.cs.tsinghua.edu.cn/ThuDogs/)
+- Kaggle 데이터셋: [https://www.kaggle.com/competitions/dog-breed-identification/data](https://www.kaggle.com/competitions/dog-breed-identification/data)
 
-**3. Model Performance Enhancement:**
+**3. 모델 성능 향상:**
 
-   >Baseline model training results showed very low val_accuracy(20~30%), prompting the decision to improve model performance.
+   > 기본 베이스 라인 모델 학습 결과가 val_accuracy(약 20%), val_loss가 매우 낮게 나와 모델의 성능을 높이기로 결정하였습니다.
 
-- Data Augmentation: Apply 5-7 data augmentation techniques such as rotation, zooming, horizontal and vertical shifts, and horizontal flipping to both the training and validation datasets.
-- Transfer Learning: Utilize 13 different transfer learning models for training, ultimately selecting the MobileNetV2 model for its superior performance and efficiency.
+- 데이터 증강: 학습 및 검증 데이터에 회전, 확대/축소, 가로/세로 이동, 가로 반전 등 5-7가지 데이터 증강 기법 적용
+- 전이 학습: 13가지 다양한 전이 학습 모델을 사용하여 학습하고, 효율적인 성능을 가진 MobileNetV2 모델을 선택
 
-    ![Transfer Learning Result](/image/transferlearning.png)
+    ![전이 학습 결과](/image/transferlearning.png)
 
-**4. Model Performance Evaluation**
-- MobileNetV2 Model Training Results (5 Epochs): The model achieved a validation accuracy of approximately 92.5% and a validation loss of approximately 0.3
+**4. 모델 성능 평가**
+- MobileNetV2 모델 학습 결과 (5 에포크): 모델은 약 92.5%의 val_accuracy와 약 0.3의 val_loss로 수렴
 
-- Overall Model Accuracy: 94.17%
+- 전체 모델 정확도: 94.17%
 
-    ![accuracy&loss](/image/accuracy&loss.png)
+    ![정확도와 손실](/image/accuracy&loss.png)
 
-    ![modelaccuracy](/image/modelaccuracy.png)
+    ![모델 정확도](/image/modelaccuracy.png)
 
-- Precision and Recall: The model exhibited high precision and recall for most classes, resulting in an overall high accuracy. However, the Recall values for the Beagle and Maltese classes were relatively lower.
+- 정밀도와 재현율: 대부분의 클래스에 대해 높은 정밀도와 재현율을 보이며, 전반적으로 높은 정확도를 달성. 그러나 비글과 말티즈 클래스의 재현율 값이 비교적 낮음
 
-    ![precision&recall](/image/precision&recall.png)
+    ![정밀도와 재현율](/image/precision&recall.png)
 
-- Confusion Matrix: The confusion matrix, represented as a heatmap, shows that the model's predictions align well with the actual classes, as indicated by the predominantly dark colors.
+- confusion matrix: 히트맵 형식으로 나타낸 결과 같은 클래스 외에는 어둡게 표시
 
     ![confusionmatrix](/image/confusionmatrix.png)
 
-- Model Predictions: The model performs exceptionally well in predicting a wide range of 4,800 images.
+- 모델 예측: 모델은 4,800개의 다양한 이미지를 매우 잘 예측
 
-    ![modelprediction](/image/modelprediction.png)
+    ![모델 예측](/image/modelprediction.png)
     
-### 2. Implementation of Website Login
+### 2. 웹사이트 로그인 구현
 
-- 품종 분류: TensorFlow.js로 변환시킨 학습된 모델 사용, 품종 예측 유무에 따라 품종 선택 가능
-- 패스워드: 가입 시 강아지 이름은 중복 가능성이 있으므로 패스워드 중복 불가능 처리
-- 로그인 구현: 비 로그인 시 매칭 불가능, 가입 시 입력한 강아지 이름 및 패스워드를 통해 로그인
+- 품종 분류: TensorFlow.js로 변환된 학습된 모델을 사용하여 사용자가 품종 예측 여부에 따라 품종 선택 가능
+- 패스워드: 중복된 강아지 이름이 발생할 수 있어 패스워드를 중복 방지 처리
+- 로그인 구현: 로그인하지 않으면 매칭이 불가능하며, 사용자는 등록 시 제공한 강아지 이름과 패스워드를 사용하여 로그인할 수 있음
 
-    ![breedclassification](/image/breedclassification.png)
+    ![품종 분류](/image/breedclassification.png)
 
-## 배운점 및 아쉬운점
+## Lesson
 
 - 모델 학습 시 random state를 조절하여 val loss와 accuracy를 효과적으로 수렴시킬 수 있음을 배웠음
 - 데이터 수집 부족으로 모델의 성능 향상이 제한되어 아쉬웠음
