@@ -1,99 +1,105 @@
-<?php 
+<!--/page/tournament.php-->
+
+<?php
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Headers: *');
 header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
-require $_SERVER["DOCUMENT_ROOT"] . "/header.php"; ?>
+require "../header.php"; ?>
+
 <head>
     <title>Codog prototype tournament</title>
-
-    <style>
-        .title {
-            text-align: center;
-            line-height: 1.2;
-            font-weight: bold;
-            font-size: 1.4rem;
-        }
-
-        .main-title{
-            padding: 3rem 0 2rem 0;
-        }
-
-        #tournament {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            max-width: 1000px;
-            margin: 0 auto;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        #tournament > .tournament_wrapper {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .image_sel_wrapper {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: 48%;
-            margin-bottom: 1rem;
-            border: 1px solid #eee;
-        }
-
-        .image_sel_wrapper button {
-            width: 100%;
-            padding: 0.6rem 0;
-            background-color: #D9D9D9;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .image_sel_wrapper button:hover {
-            opacity: 0.5;
-        }
-
-        img {
-            width: 250px;
-            height: 250px;
-            padding: 0.5rem;
-        }
-
-        .first_result_wrapper {
-            flex: 0 0 100%;
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"; integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
-<body>
-<p class="title main-title">
 
-</p>
-<div>
-    <p id="tournament-round" class="title" style="">32강 1 / 16</p>
-</div>
-<div id="tournament">
-    <div class="tournament_wrapper">
-        <div class="image_sel_wrapper">
-            <img id="select-1" src="" alt="">
-            <button id="btn-select-1">선택</button>
-        </div>
-        <div class="image_sel_wrapper">
-            <img id="select-2" src="" alt="">
-            <button id="btn-select-2">선택</button>
+
+<style>
+
+.first_result_wrapper{
+    display : block;;
+    width : 100%;
+}
+.first_result_wrapper img{
+    display : block;
+    margin : auto;      
+}
+.image_sel_wrapper{
+    background-color : #041948;
+}
+.image_sel_wrapper > img{
+    height : 400px;
+    display : block;
+    margin : auto;
+    object-fit : cover;
+}
+.out_div{
+    width : 100%;
+    margin-top : 32px;
+    display : flex;
+    justify-content : space-between;
+    align-items : center;
+}
+.out_div > div{
+    width : calc((100% - 184px) / 3);
+    margin-right : 20px;
+    box-sizing : border-box;
+    border : 2px solid var(--color-point);
+    border-radius : 24px;
+    padding : 24px;
+    background-color : #fff;
+}
+.out_div p{
+    margin-top : 24px;
+
+}
+.out_div > div img{ 
+    display : block;
+    width : calc(100% - 24px);
+    margin : auto;
+    height  : 200px;
+    object-fit : cover
+}
+.out_div > div:nth=child(3){
+    margin-right : 0px;
+}
+</style>
+
+<body>
+    <a href="./main.php">
+        <header>
+            <div class="inner">
+                <img src="dog.png" />
+                <h3>
+                    CODOG
+                </h3>
+            </div>
+
+        </header>
+    </a>
+
+    <div>
+        <h2 id="tournament-round">32강 1 / 16</h2>
+    </div>
+
+    <div class="inner">
+        <div id="tournament">
+            <div class="tournament_wrapper">
+                <div class="image_sel_wrapper">
+                    <img id="select-1" src="dog.png" alt="">
+                    <button id="btn-select-1">선택</button>
+                </div>
+                <div class="between_line"></div>
+                <div class="image_sel_wrapper">
+                    <img id="select-2" src="dog.png" alt="">
+                    <button id="btn-select-2">선택</button>
+                </div>
+            </div>
+    
         </div>
     </div>
 
-</div>
-
-<!--<a href="main.html">작성 완료</a>-->
-<input type="text" style="display: none" id="is_first_chk" value="N">
+    <!--<a href="main.php">작성 완료</a>-->
+    <input type="text" style="display: none" id="is_first_chk" value="N">
 </body>
 
 <!--<script src="final.js"></script>-->
@@ -117,18 +123,15 @@ require $_SERVER["DOCUMENT_ROOT"] . "/header.php"; ?>
     let round = 32;
 
     function initImg() {
-        if(round === 2) {
-            $('#tournament-round').text(
-                `결승전 1 / 1`
-            );
-        }else {
-            $('#tournament-round').text(
-                `${round}강 ${currentRound} / ${round / 2}`
-            );
+
+        if (round === 2) {
+            $('#tournament-round').text(`결승전 1 / 1`);
+        } else {
+            $('#tournament-round').text(`${round}강 ${currentRound} / ${round / 2}`);
         }
 
 
-        if(round === 1) {
+        if (round === 1) {
             $('#tournament-round').text(
                 `우승자`
             );
@@ -136,8 +139,8 @@ require $_SERVER["DOCUMENT_ROOT"] . "/header.php"; ?>
             return;
         }
 
-        if((round === 32 && currentIndex === 32) || (round === 16 && currentIndex === 16) || (round === 8 && currentIndex === 8)
-            || (round === 4 && currentIndex === 4) || (round === 2 && currentIndex === 2)){
+        if ((round === 32 && currentIndex === 32) || (round === 16 && currentIndex === 16) || (round === 8 && currentIndex === 8)
+            || (round === 4 && currentIndex === 4) || (round === 2 && currentIndex === 2)) {
             console.log('current', currentIndex)
             selectedElements = winner;
             winner = [];
@@ -227,7 +230,6 @@ require $_SERVER["DOCUMENT_ROOT"] . "/header.php"; ?>
 
 
 
-
     // 최종 우승자를 표시하는 함수
     function displayWinner(tournamentContainer, winner) {
         // var winner = results[0];
@@ -264,7 +266,10 @@ require $_SERVER["DOCUMENT_ROOT"] . "/header.php"; ?>
                 alert('데이터가 없습니다.');
                 return;
             }
+            let out_div = document.createElement("div");
+            out_div.classList.add("out_div")
             for (const data of response.data) {
+
                 const divTag = document.createElement("div");
                 const winnerImg = document.createElement("img");
                 winnerImg.src = `https://codog.co.kr/upload/${response.data[i].photo}`;
@@ -276,6 +281,7 @@ require $_SERVER["DOCUMENT_ROOT"] . "/header.php"; ?>
                 const breedTextNode = document.createTextNode(`품종: ${data.breed}`)
 
                 const nameTextNode = document.createTextNode(`이름: ${data.name}`);
+                const kakaoIdTextNode = document.createTextNode(`카톡 아이디: ${data.kakaoId}`);
 
                 let sizeTextNode;
                 if (data.size === 'small') {
@@ -319,6 +325,8 @@ require $_SERVER["DOCUMENT_ROOT"] . "/header.php"; ?>
                 pTag.appendChild(document.createElement("br"));
                 pTag.appendChild(nameTextNode);
                 pTag.appendChild(document.createElement("br"));
+                pTag.appendChild(kakaoIdTextNode);
+                pTag.appendChild(document.createElement("br"));
                 pTag.appendChild(sizeTextNode);
                 pTag.appendChild(document.createElement("br"));
                 pTag.appendChild(placeTextNode);
@@ -330,11 +338,14 @@ require $_SERVER["DOCUMENT_ROOT"] . "/header.php"; ?>
                 pTag.appendChild(sexTextNode);
 
                 divTag.appendChild(pTag);
-
-                tournamentContainer.appendChild(divTag);
+                out_div.appendChild(divTag)
+                
                 i++;
             }
-
+            tournamentContainer.appendChild(out_div);
+            let gotomainButton = `<button class="form_button" style="margin : auto; margin-top : 120px" onclick="location.href='https://www.codog.co.kr/page/main.php'">메인 화면</button>`;
+            document.getElementById("tournament").style.display = "block";
+            tournamentContainer.innerHTML = tournamentContainer.innerHTML + gotomainButton;
         });
     }
 

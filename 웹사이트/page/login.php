@@ -107,7 +107,7 @@
             if (post.name === username && post.password === password) {
               found = true;
               sessionStorage.setItem("loggedInUser", JSON.stringify(post));
-              window.location.href = "main.html"; // 로그인 성공 시 메인 페이지로 이동
+              window.location.href = "main.php"; // 로그인 성공 시 메인 페이지로 이동
               return;
             }
           }
